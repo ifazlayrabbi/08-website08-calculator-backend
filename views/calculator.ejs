@@ -1,0 +1,26 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+	<link rel="icon" href="/images/calculator.ico">
+</head>
+<body style="padding: 7% 15%; text-align: center;">
+	<div>
+		<h1 style="padding-bottom: 20px">Calculator</h1>
+		<form action='/' method='post'>
+			<input type="text" name="num1" placeholder="1st Number"><br>
+			<input type="text" name="num2" placeholder="2nd Number"><br><br>
+	
+			<button type="submit" name="operator" value="plus">+</button>
+			<button type="submit" name="operator" value="minus">-</button>
+			<button type="submit" name="operator" value="multiply">*</button>
+			<button type="submit" name="operator" value="divide">/</button>
+		
+			<br><br>
+			<p><%= result %></p>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,34 +1,40 @@
 const express = require('express')
-const bodyParser = require('body-parser') // npm list -g
-
 const app = express()
+
+const bodyParser = require('body-parser') // npm list -g
 app.use(bodyParser.urlencoded({extended: true}))
-
-app.listen(3000, function(){
-	console.log('Server running at port 3000')
-})
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
 
 
 
 
 
+let result
 
 app.get('/', function(req, res){
-	res.sendFile(__dirname + '/index.html')
+	// res.sendFile(__dirname + '/calculator.html')
+	res.render('calculator', {
+		result: result
+	})
 })
 
 app.post('/', function(req, res){
+	const {num1, num2, operator} = req.body
+
 	// console.log(req.body)
-	let a = parseInt(req.body.num1)
-	let b = parseInt(req.body.num2)
-	// let sum = ''+(a+b) // mark = xx33
-	let sum = a+b
+	let a = parseInt(num1)
+	let b = parseInt(num2)
 
-	// res.send('Thanks for posting.')
-	// console.log(sum)
+	switch(operator){
+		case 'plus': result = a+b; break
+		case 'minus': result = a-b; break
+		case 'multiply': result = a*b; break
+		case 'divide': result = a/b; break
+	}
 
-	// res.send(sum) // mark = xx33
-	res.send('Summation = ' + sum)
+	console.log('Result = ' + result)
+	res.redirect('/')
 })
 
 
@@ -56,3 +62,4 @@ app.post('/bmi-cal', function(req, res){
 
 
 
+app.listen(3000, function(){console.log('Server running at port 3000')})
