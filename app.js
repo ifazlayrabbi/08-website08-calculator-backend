@@ -5,6 +5,7 @@ const bodyParser = require('body-parser') // npm list -g
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+require('dotenv').config()
 
 
 
@@ -61,5 +62,5 @@ app.post('/bmi-cal', function(req, res){
 
 
 
-
-app.listen(3000, function(){console.log('Server running at port 3000')})
+const port = process.env.PORT || 3000
+app.listen(port, function(){console.log('Server running at port ' + port)})
